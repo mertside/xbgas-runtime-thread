@@ -36,6 +36,8 @@ typedef struct args{
 typedef enum {false, true} bool;                                                
                                                                                 
 // ---------------------------------------------------------- GLOBAL VARIABLES                         
+volatile uint64_t *barrier;
+
 // Handles for each thread thread                                               
 pthread_t thread_handles[MAX_NUM_OF_THREADS];                                   
                                                                                 
