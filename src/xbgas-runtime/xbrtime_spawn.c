@@ -4,18 +4,30 @@
  */
 
 #include "xbrtime.h"
+// #include <stdio.h>                                                              
+// #include <stdlib.h>                                                             
+// #include <stdint.h>                                                             
+// #include <string.h>                                                             
+// #include <pthread.h>                                                            
+// #include <stdbool.h> 
 
 // ---------------------------------- MACROS
 #define DEBUG 1  
 
-/* ------------------------------------------------- GLOBALS */
+// ------------------------------------------------------------------- STRUCTS  
+typedef struct args{                                                            
+  uint64_t thread_id;                                                           
+  volatile uint64_t trampoline_memory;                                          
+} args;
+
+// ---------------------------------------------------------- GLOBAL VARIABLES 
 // Handles for each thread thread                                               
 extern pthread_t thread_handles[NUM_THREADS];
 
 // Args struct for each thread                                                  
 extern args thread_args[NUM_THREADS];    
 
-/* ------------------------------------------------- FUNCTION */
+// ------------------------------------------------------------ SPAWN FUNCTION 
 void __xbrtime_spawn(void *jmpAddr){  
  
   // Get the number of threads from the environment
