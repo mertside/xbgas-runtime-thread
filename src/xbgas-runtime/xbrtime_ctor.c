@@ -12,12 +12,13 @@
  */
 
 #include "xbrtime.h"
-#include "threadpool.h"
 
 #include <stdlib.h>
 #include <stdio.h>
 #include <pthread.h>
 #include <unistd.h>
+
+#include "threadpool.h"
 
 // -------------------------------------------------------------------- MACROS
 //#define INIT_ADDR 0xBB00000000000000ull
@@ -49,31 +50,25 @@ __attribute__((constructor)) void __xbrtime_ctor(){
   int i = 0;
   int numOfThreads = MAX_NUM_OF_THREADS;
 
-  // Can take number of threads as args
-  if(argc > 1){
-    numOfThreads = atoi(argv[1]);
-  } else {
-    // Get number of threads from the environment
-    char *str = getenv("NUM_OF_THREADS");
-    // Is the environment variable set appropriately?
-    if(str == NULL || atoi(str) <= 0 || atoi(str) > MAX_NUM_OF_THREADS){
-      if(str == NULL) {
-        // NOT found!
-        fprintf(stderr, "\nNUM_OF_THREADS not set; set environment first!\n");
-      } else {
-        // NOT a reasonable number!
-        fprintf(stderr, "\nNUM_OF_THREADS should be between %d and %d\n",
-                1, MAX_NUM_OF_THREADS);
-      }
-      // Set MAX number of threads as an environment variable
-      const char *envName = "NUM_OF_THREADS";
-      char envValue[10] = "";
-      sprintf(envValue, "%d", numOfThreads);
-      setenv(envName, envValue, 1);
+  // Get number of threads from the environment
+  char *str = getenv("NUM_OF_THREADS");
+  // Is the environment variable set appropriately?
+  if(str == NULL || atoi(str) <= 0 || atoi(str) > MAX_NUM_OF_THREADS){
+    if(str == NULL) {
+      // NOT found!
+      fprintf(stderr, "\nNUM_OF_THREADS not set; set environment first!\n");
+    } else {
+      // NOT a reasonable number!
+      fprintf(stderr, "\nNUM_OF_THREADS should be between %d and %d\n",
+              1, MAX_NUM_OF_THREADS);
     }
-    numOfThreads = atoi(getenv("NUM_OF_THREADS"));
-    //free(str);
+    // Set MAX number of threads as an environment variable
+    const char *envName = "NUM_OF_THREADS";
+    char envValue[10] = "";
+    sprintf(envValue, "%d", numOfThreads);
+    setenv(envName, envValue, 1);
   }
+  numOfThreads = atoi(getenv("NUM_OF_THREADS"));
 
 #if DEBUG
   fprintf(stdout, "\nNumber of threads: %d\n", numOfThreads);

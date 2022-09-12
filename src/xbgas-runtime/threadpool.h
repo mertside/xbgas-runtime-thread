@@ -10,6 +10,11 @@
 #include <stdbool.h>
 #include <stddef.h>
 
+#include <stdlib.h>
+#include <stdio.h>
+#include <pthread.h>
+#include <unistd.h>
+
 // ---------------------------------------------------------------- PROTOTYPES
 
 struct tpool_work_queue;
