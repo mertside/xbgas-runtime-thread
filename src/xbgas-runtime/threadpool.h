@@ -15,6 +15,11 @@
 #include <pthread.h>
 #include <unistd.h>
 
+#include <pthread.h>
+#include <sys/types.h>
+
+#include "threadpool.h"
+
 // ---------------------------------------------------------------- PROTOTYPES
 
 struct tpool_work_queue;

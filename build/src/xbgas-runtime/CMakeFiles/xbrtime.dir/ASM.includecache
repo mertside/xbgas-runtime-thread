@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/meside/xbgas-runtime-thread/src/xbgas-runtime/xbrtime_api_asm.s
+
+/home/meside/xbgas-runtime-thread/src/xbgas-runtime/xbrtime_atomics_asm.s
+
+/home/meside/xbgas-runtime-thread/src/xbgas-runtime/xbrtime_ctor_asm.s
+
+/home/meside/xbgas-runtime-thread/src/xbgas-runtime/xbrtime_util_asm.s
+
