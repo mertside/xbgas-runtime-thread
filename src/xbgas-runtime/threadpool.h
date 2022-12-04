@@ -216,9 +216,28 @@ void tpool_destroy(tpool_work_queue_t *wq)
   free(wq);                                                                     
 }     
 
+// ---
+/*enrty func
+{
+ // asm get ret
+ tpool_add_work()
+
+}
+*/
+
 // -------------------------------------------------- Adding work to the queue  
 bool tpool_add_work(tpool_work_queue_t *wq, thread_func_t func, void *arg)                 
-{                                                                               
+{    
+  /*
+   * calculate number of bytes in func to travel up the stack by 
+   *    tpool_work_queue_t *wq, thread_func_t func, void *arg
+   *
+   * 
+   * __asm__
+   *   get rtrn adrr
+   *   
+   */
+                                                                            
   tpool_work_unit_t *work;                                                           
                                                                                 
   if (wq == NULL)                                                               
